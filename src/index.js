@@ -11,11 +11,13 @@ import AuthMiddleware from './middlewares/auth';
 
 import mongoose from 'mongoose';
 import * as AppModels from './models';
+import cors from 'cors';
 
 // initialize express
 const app = express();
 app.use(AuthMiddleware);
 app.use(express.json());
+app.use(cors());
 app.use(express.static(join(__dirname, './uploads')));
 
 app.get('/posts', async (req, res) => {

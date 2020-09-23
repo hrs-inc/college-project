@@ -29,10 +29,9 @@ const Navbar = () => {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
-          <div className='navbar-container container'>
+          <div className='navbar-container'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-              <AiOutlineCar className='navbar-icon' />
-              EasyCar
+              Easy Car <AiOutlineCar />
             </Link>
             <div className='menu-icon' onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
@@ -61,24 +60,18 @@ const Navbar = () => {
                   Products
                 </Link>
               </li>
-              <li className='nav-btn'>
-                {button ? (
-                  <Link to='/sign-up' className='btn-link'>
-                    <Button buttonStyle='btn--outline'>SIGN UP</Button>
-                  </Link>
-                ) : (
-                  <Link
-                    to='/sign-up'
-                    className='btn-link'
-                    onClick={closeMobileMenu}
-                  >
-                    <Button buttonStyle='btn--outline' buttonSize='btn-mobile'>
-                      SIGN-UP
-                    </Button>
-                  </Link>
-                )}
+
+              <li>
+                <Link
+                  to='/sign-up'
+                  className='nav-links-mobile'
+                  onClick={closeMobileMenu}
+                >
+                  Sign Up
+                </Link>
               </li>
             </ul>
+            {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
           </div>
         </div>
       </IconContext.Provider>
