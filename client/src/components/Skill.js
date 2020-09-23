@@ -1,5 +1,7 @@
 import React from 'react';
 import './Skill.css';
+import { Link } from 'react-router-dom';
+import { FaCar, FaWallet, FaComments, FaPeopleCarry } from 'react-icons/fa';
 
 function Skill() {
   return (
@@ -16,9 +18,9 @@ function Skill() {
 
         <div className='row'>
           <div className='col-sm-6 col-lg-3 text-center my-3'>
-            <a href='' className='skills-icon p-2 rounded-circle'>
-              <i className='fas fa-car fa-fw'></i>
-            </a>
+            <Link to='#' className='skills-icon p-2 rounded-circle'>
+              <FaCar />
+            </Link>
             <h6 className='text-uppercase font-weight-bold my-3'>
               many brands
             </h6>
@@ -30,9 +32,9 @@ function Skill() {
           </div>
 
           <div className='col-sm-6 col-lg-3 text-center my-3'>
-            <a href='' className='skills-icon p-2 rounded-circle'>
-              <i className='fas fa-wallet fa-fw'></i>
-            </a>
+            <Link to='#' className='skills-icon p-2 rounded-circle'>
+              <FaWallet />
+            </Link>
             <h6 className='text-uppercase font-weight-bold my-3'>affordable</h6>
             <div className='skills-underline'></div>
             <p className='w-75% mx-auto text-muted'>
@@ -42,9 +44,9 @@ function Skill() {
           </div>
 
           <div className='col-sm-6 col-lg-3 text-center my-3'>
-            <a href='' className='skills-icon p-2 rounded-circle'>
-              <i className='fas fa-comments fa-fw'></i>
-            </a>
+            <Link to='#' className='skills-icon p-2 rounded-circle'>
+              <FaComments />
+            </Link>
             <h6 className='text-uppercase font-weight-bold my-3'>Support</h6>
             <div className='skills-underline'></div>
             <p className='w-75% mx-auto text-muted'>
@@ -54,9 +56,9 @@ function Skill() {
           </div>
 
           <div className='col-sm-6 col-lg-3 text-center my-3'>
-            <a href='' className='skills-icon p-2 rounded-circle'>
-              <i className='fas fa-people-carry fa-fw'></i>
-            </a>
+            <Link to='#' className='skills-icon p-2 rounded-circle'>
+              <FaPeopleCarry />
+            </Link>
             <h6 className='text-uppercase font-weight-bold my-3'>caring</h6>
             <div className='skills-underline'></div>
             <p className='w-75% mx-auto text-muted'>
