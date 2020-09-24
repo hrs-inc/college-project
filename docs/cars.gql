@@ -1,0 +1,50 @@
+query GET_ALL_CARS {
+  getAllCars {
+    id
+    objectId
+    brand
+    category
+    model
+    isRent
+    seat
+  }
+}
+
+query GET_SINGLE_CAR($objectId: String!) {
+  getSingleCar(objectId: $objectId) {
+    id
+    objectId
+    brand
+    category
+    model
+    isRent
+    seat
+  }
+}
+
+mutation CreateCar(
+  $objectId: String!
+  $model: String!
+  $brand: String!
+  $category: String!
+  $isRent: Boolean!
+  $seat: Int!
+) {
+  addCar(
+    carInput: {
+      objectId: $objectId
+      model: $model
+      brand: $brand
+      category: $category
+      isRent: $isRent
+      seat: $seat
+    }
+  ) {
+    objectId
+    brand
+    category
+    model
+    isRent
+    seat
+  }
+}

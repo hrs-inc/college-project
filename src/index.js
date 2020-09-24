@@ -20,32 +20,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(join(__dirname, './uploads')));
 
-app.get('/posts', async (req, res) => {
-  let { Post } = AppModels;
-  let { page, limit } = req.query;
-
-  const myCustomLabels = {
-    totalDocs: 'postCount',
-    docs: 'posts',
-    limit: 'perpage',
-    page: 'currentPage',
-    nextPage: 'next',
-    prevPage: 'prev',
-    totalPages: 'pageCount',
-    padingCounter: 'slNo',
-    meta: 'paginator',
-  };
-
-  const options = {
-    page: page || 1,
-    limit: limit || 10,
-    customLabels: myCustomLabels,
-  };
-
-  await Post.paginate({}, options);
-  return res.json(posts);
-});
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
