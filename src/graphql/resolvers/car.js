@@ -5,9 +5,13 @@ export default {
       return cars;
     },
     getSingleCar: async (parent, { objectId }, { Car }, info) => {
-      console.log(Car);
+      console.log(parent);
       let car = await Car.findOne({ objectId });
       return car;
+    },
+    getArgumentCars: async (parent, { category }, { Car }, info) => {
+      let cars = await Car.find();
+      return cars.filter((car) => car.category === category);
     },
   },
   Mutation: {

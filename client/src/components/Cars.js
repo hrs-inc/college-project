@@ -1,6 +1,7 @@
 import React from 'react';
 import CarItem from './CarItem';
 import './Car.css';
+// import { gql, useQuery } from '@apollo/client';
 
 const Cars = () => {
   return (
@@ -10,55 +11,41 @@ const Cars = () => {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CarItem
-              src='images/img-1.jpg'
-              text='Explore the hidden waterfall deep inside the Amazon Jungle'
-              label='Adventure'
-              path='/services'
-            />
-            <CarItem
-              src='images/img-2.jpg'
-              text='Travel through the Islands of Bali in a Private Cruise'
-              label='Luxury'
-              path='/services'
-            />
-          </ul>
-          <ul className='cards__items'>
-            <CarItem
-              src='images/img-3.jpg'
+              src='images/CazUpTttvZ.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-              label='Mystery'
+              label='sedan'
               path='/services'
             />
             <CarItem
-              src='images/img-4.jpg'
+              src='images/tNHeWkCVBr.jpg'
               text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
+              label='convertible'
               path='/products'
             />
             <CarItem
-              src='images/img-8.jpg'
+              src='images/owKsJpxQMy.jpg'
               text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
+              label='hatchbag'
               path='/sign-up'
             />
           </ul>
           <ul className='cards__items'>
             <CarItem
-              src='images/img-5.jpg'
+              src='images/bIBwtlieZU.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-              label='Mystery'
+              label='coupe'
               path='/services'
             />
             <CarItem
-              src='images/img-6.jpg'
+              src='images/4fOA1olTnP.jpg'
               text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
+              label='suv'
               path='/products'
             />
             <CarItem
-              src='images/img-7.jpg'
+              src='images/eJfSKUCGFS.jpg'
               text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
+              label='pickup'
               path='/sign-up'
             />
           </ul>

@@ -3,7 +3,8 @@ import { gql } from 'apollo-server-express';
 export default gql`
   extend type Query {
     getAllCars: [Car]!
-    getSingleCar(objectId: String!): Car
+    getSingleCar(objectId: String!): Car!
+    getArgumentCars(category: String!): [Car]!
   }
 
   type Car {
