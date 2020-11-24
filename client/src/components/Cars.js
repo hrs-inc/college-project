@@ -11,10 +11,10 @@ const Cars = () => {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CarItem
-              src='images/CazUpTttvZ.jpg'
+              src='images/T3bdc4539U.png'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
               label='sedan'
-              path='/services'
+              path='/sedan/cars'
             />
             <CarItem
               src='images/tNHeWkCVBr.jpg'

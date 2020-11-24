@@ -6,12 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from './components/Navbar';
 import Skill from './components/Skill';
-// import Inventory from './components/Inventory';
 import Footer from './components/Footer';
 // import Login from './components/Login';
 
 import './App.css';
 import Home from './components/pages/Home';
+import GetArgumentsCar from './components/GetArgumentsCar';
+// import GetArgumentsCar from './components/GetArgumentsCar';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
@@ -26,8 +27,10 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/sedan/cars' component={GetArgumentsCar} />
           </Switch>
           <Skill />
+          {/* <GetArgumentsCar /> */}
           {/* <Login /> */}
           <Footer />
         </Router>

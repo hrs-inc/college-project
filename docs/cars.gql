@@ -22,6 +22,17 @@ query GET_SINGLE_CAR($objectId: String!) {
   }
 }
 
+query GET_ARGUMENTS_CARS($category: String!) {
+  getArgumentCars(category: $category) {
+    id
+    objectId
+    brand
+    category
+    model
+    isRent
+  }
+}
+
 mutation CreateCar(
   $objectId: String!
   $model: String!

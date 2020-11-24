@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GetArgumentsCar from './GetArgumentsCar';
 
 const CarItem = ({ path, label, src, text }) => {
+  const handleClick = () => {
+    return <Link to='/sedan/cars' component={GetArgumentsCar} />;
+  };
+
   return (
     <>
       <li className='cards__item'>
@@ -14,7 +19,9 @@ const CarItem = ({ path, label, src, text }) => {
             />
           </figure>
           <div className='cards__item__info'>
-            <h5 className='cards__item__text'>{text}</h5>
+            <h5 className='cards__item__text' onClick={handleClick}>
+              {text}
+            </h5>
           </div>
         </Link>
       </li>
