@@ -2,45 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+  ApolloLink,
+} from '@apollo/client';
 
-// import {
-//   ApolloProvider,
-//   ApolloClient,
-//   InMemoryCache,
-//   gql,
-// } from '@apollo/client';
+const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
 
-// const client = new ApolloClient({
-//   uri: 'http://localhost:4000/graphql',
-//   cache: new InMemoryCache(),
-// });
+const authLink = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('token');
+  operation.setContext({
+    headers: {
+      authorization: token ? `${token}` : '',
+    },
+  });
+  return forward(operation);
+});
 
-// client
-//   .query({
-//     query: gql`
-//       query AUTHENTICATE_USER($username: String!, $password: String!) {
-//         authenticateUser(username: $username, password: $password) {
-//           token
-//           user {
-//             id
-//             email
-//             username
-//             firstName
-//             lastName
-//             updatedAt
-//             createdAt
-//             avatarImage
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 ReactDOM.render(
-  // <ApolloProvider client={client}>
-  <App />,
-  // </ApolloProvider>
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
   document.getElementById('root'),
 );

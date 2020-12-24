@@ -10,45 +10,6 @@ import {
 export default {
   Query: {
     authUserProfile: async (parent, {}, { user }, info) => user,
-    authenticateUser: async (
-      parent,
-      { username, password },
-      { User },
-      info,
-    ) => {
-      try {
-        await UserAuthenticationRules.validate(
-          { username, password },
-          {
-            abortEarly: false,
-          },
-        );
-        // find user by username
-        let user = await User.findOne({ username });
-        if (!user) {
-          throw new ApolloError('Username not found', '403');
-        }
-        // check for the password
-        let isMatch = await compare(password, user.password);
-        if (!isMatch) {
-          throw new ApolloError('Wrong crdentials');
-        }
-
-        // serialize user
-        user = user.toObject();
-        user.id = user._id;
-        user = serializeUser(user);
-
-        // issues new authentication token
-        let token = await issueToken(user);
-        return {
-          token,
-          user,
-        };
-      } catch (err) {
-        throw new ApolloError(error.message, '403');
-      }
-    },
   },
   Mutation: {
     registerUser: async (parent, { newUser }, { User }, info) => {
@@ -89,6 +50,45 @@ export default {
         };
       } catch (err) {
         throw new ApolloError(err.message, '400');
+      }
+    },
+    authenticateUser: async (
+      parent,
+      { username, password },
+      { User },
+      info,
+    ) => {
+      try {
+        await UserAuthenticationRules.validate(
+          { username, password },
+          {
+            abortEarly: false,
+          },
+        );
+        // find user by username
+        let user = await User.findOne({ username });
+        if (!user) {
+          throw new ApolloError('Username not found', '403');
+        }
+        // check for the password
+        let isMatch = await compare(password, user.password);
+        if (!isMatch) {
+          throw new ApolloError('Wrong crdentials');
+        }
+
+        // serialize user
+        user = user.toObject();
+        user.id = user._id;
+        user = serializeUser(user);
+
+        // issues new authentication token
+        let token = await issueToken(user);
+        return {
+          token,
+          user,
+        };
+      } catch (err) {
+        throw new ApolloError(error.message, '403');
       }
     },
   },
