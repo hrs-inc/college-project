@@ -4,7 +4,11 @@ import GetArgumentsCar from './GetArgumentsCar';
 
 const CarItem = ({ path, label, src, text }) => {
   const handleClick = () => {
-    return <Link to='/sedan/cars' component={GetArgumentsCar} />;
+    return (
+      <Link to={`/${label}/cars`}>
+        <GetArgumentsCar />
+      </Link>
+    );
   };
 
   return (

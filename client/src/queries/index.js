@@ -1,5 +1,25 @@
 import { gql } from '@apollo/client';
 
+/**
+ * cars
+ */
+
+export const GET_CAR = gql`
+  query($category: String!) {
+    getArgumentCars(category: $category) {
+      id
+      objectId
+      brand
+      category
+      model
+      isRent
+    }
+  }
+`;
+
+/**
+ * users
+ */
 export const REGISTER_USER = gql`
   mutation(
     $email: String!

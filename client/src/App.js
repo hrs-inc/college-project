@@ -31,7 +31,7 @@ const App = ({ refetch }) => {
           path='/signup'
           render={() => <Signup refetch={refetch} />}
         />
-        <Route path='/sedan/cars' component={GetArgumentsCar} />
+        <Route path='/:category/cars' component={GetArgumentsCar} />
       </Switch>
       {/* <Skill /> */}
       {/* <Footer /> */}

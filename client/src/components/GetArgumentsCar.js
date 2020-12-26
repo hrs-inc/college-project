@@ -1,23 +1,9 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
-// import { object } from 'yup';
-// import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_CAR } from '../queries';
 
-const GET_CAR = gql`
-  # query GET_ARGUMENT_CARS($category: String)
-  {
-    getArgumentCars(category: "sedan") {
-      id
-      objectId
-      brand
-      category
-      model
-      isRent
-    }
-  }
-`;
-
-const GetArgumentsCar = ({ category }) => {
+const GetArgumentsCar = ({ match }) => {
+  const { category } = match.params;
   const { loading, data, error } = useQuery(GET_CAR, {
     variables: { category },
   });
@@ -25,7 +11,7 @@ const GetArgumentsCar = ({ category }) => {
   if (loading) return <h1>Loading</h1>;
   if (error) return <h4>Error</h4>;
 
-  // console.log(data.getArgumentCars);
+  console.log(data);
 
   return data.getArgumentCars.map(({ objectId, id, model, brand }) => (
     <section id='store' className='store py-5' style={{ background: 'grey' }}>

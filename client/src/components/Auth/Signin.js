@@ -8,7 +8,7 @@ import Error from '../lib/Error';
 
 import './Signup.css';
 
-const Signin = (props) => {
+const Signin = ({ refetch, history }) => {
   const { inputs, handleChange, clearForm } = useForm({
     username: '',
     password: '',
@@ -33,10 +33,11 @@ const Signin = (props) => {
   const handleSubmit = async (e, authenticateUser) => {
     e.preventDefault();
     await authenticateUser().then(({ data }) => {
+      // console.log(props);
       localStorage.setItem('token', data.authenticateUser.token);
-      props.refetch();
+      console.log(refetch);
       clearForm();
-      props.history.push('/');
+      history.push('/');
     });
   };
 
