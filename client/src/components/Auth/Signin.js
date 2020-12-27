@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { AUTHENTICATE_USER } from '../../queries';
 import img from '../../assets/l2.png';
@@ -8,7 +9,7 @@ import Error from '../lib/Error';
 
 import './Signup.css';
 
-const Signin = ({ refetch, history }) => {
+const Signin = (props) => {
   const { inputs, handleChange, clearForm } = useForm({
     username: '',
     password: '',
@@ -30,14 +31,13 @@ const Signin = ({ refetch, history }) => {
 
   if (loading) return <h1>Loading</h1>;
 
-  const handleSubmit = async (e, authenticateUser) => {
-    e.preventDefault();
-    await authenticateUser().then(({ data }) => {
-      // console.log(props);
+  const handleSubmit = (event, authenticateUser) => {
+    event.preventDefault();
+    authenticateUser().then(async ({ data }) => {
       localStorage.setItem('token', data.authenticateUser.token);
-      console.log(refetch);
+      await props.refetch();
       clearForm();
-      history.push('/');
+      props.history.push('/');
     });
   };
 
@@ -80,4 +80,4 @@ const Signin = ({ refetch, history }) => {
   );
 };
 
-export default Signin;
+export default withRouter(Signin);

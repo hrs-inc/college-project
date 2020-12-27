@@ -1,4 +1,4 @@
-import { verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { SECRET } from '../config';
 import { User } from '../models';
 
@@ -19,7 +19,7 @@ const AuthMiddleware = async (req, res, next) => {
   // decode token using verify
   let decodedToken;
   try {
-    decodedToken = verify(token, SECRET);
+    decodedToken = jwt.verify(token, SECRET);
   } catch (err) {
     req.isAuth = false;
     return next();
@@ -36,8 +36,8 @@ const AuthMiddleware = async (req, res, next) => {
     return next();
   }
   // set the req user to the fetched user
-  req.user = authUser;
   req.isAuth = true;
+  req.user = authUser;
   return next();
 };
 

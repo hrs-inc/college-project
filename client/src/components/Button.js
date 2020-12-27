@@ -12,6 +12,7 @@ export const Button = ({
   onClick,
   buttonStyle,
   buttonSize,
+  session,
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -19,14 +20,28 @@ export const Button = ({
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
   return (
-    <Link to='/signup' className='btn-mobile'>
-      <button
-        className={`btn ${checkButtonStyle} ${checkButtonSize}`}
-        onClick={onClick}
-        type={type}
-      >
-        {children}
-      </button>
-    </Link>
+    <>
+      {session && session.authUserProfile ? (
+        <Link to='/signout' className='btn-mobile'>
+          <button
+            className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+            onClick={onClick}
+            type={type}
+          >
+            {children}
+          </button>
+        </Link>
+      ) : (
+        <Link to='/signup' className='btn-mobile'>
+          <button
+            className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+            onClick={onClick}
+            type={type}
+          >
+            {children}
+          </button>
+        </Link>
+      )}
+    </>
   );
 };

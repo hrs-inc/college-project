@@ -56,3 +56,12 @@ export const AUTHENTICATE_USER = gql`
     }
   }
 `;
+
+export const GET_CURRENT_USER = gql`
+  query {
+    authUserProfile {
+      username
+      email
+    }
+  }
+`;

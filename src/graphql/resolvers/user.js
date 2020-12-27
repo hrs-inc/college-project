@@ -88,7 +88,7 @@ export default {
           user,
         };
       } catch (err) {
-        throw new ApolloError(error.message, '403');
+        throw new ApolloError(err.message, '403');
       }
     },
   },

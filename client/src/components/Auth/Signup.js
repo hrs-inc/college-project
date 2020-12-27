@@ -7,8 +7,9 @@ import useForm from '../lib/useForm';
 import Error from '../lib/Error';
 
 import './Signup.css';
+import { withRouter } from 'react-router-dom';
 
-const Signup = (props) => {
+const Signup = ({ history, refetch }) => {
   const { inputs, handleChange, clearForm } = useForm({
     firstName: '',
     lastName: '',
@@ -51,14 +52,14 @@ const Signup = (props) => {
     e.preventDefault();
     registeruser().then(async ({ data }) => {
       localStorage.setItem('token', data.registerUser.token);
-      await props.refetch();
+      await refetch();
       clearForm();
-      props.history.push('/');
+      history.push('/');
     });
   };
 
   return (
-    <div>
+    <div style={{ height: '90vh' }}>
       <form
         className='loginbox'
         onSubmit={(e) => handleSubmit(e, registerUser)}
@@ -145,10 +146,10 @@ const Signup = (props) => {
         <button type='submit' disabled={loading || validateForm()}>
           Signup
         </button>
-        {error && <Error message={error.message} />}
       </form>
+      {error && <Error message={error.message} />}
     </div>
   );
 };
 
-export default Signup;
+export default withRouter(Signup);
