@@ -5,7 +5,6 @@ export default {
       return cars;
     },
     getSingleCar: async (parent, { objectId }, { Car }, info) => {
-      console.log(parent);
       let car = await Car.findOne({ objectId });
       return car;
     },
@@ -20,6 +19,10 @@ export default {
         ...carInput,
       });
       return newCar;
+    },
+    addCategory: async (parent, { name }, { Category }, info) => {
+      let categories = await Category.create({ name });
+      return categories;
     },
   },
 };

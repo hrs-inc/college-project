@@ -23,6 +23,7 @@ import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
 import Service from './components/Service';
 import Products from './components/Products';
+import GetArgumentsCar from './components/GetArgumentsCar';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
 
@@ -59,6 +60,8 @@ const Root = ({ refetch, session }) => (
         />
         <Route path='/service' component={Service} />
         <Route path='/products' component={Products} />
+
+        <Route path='/:category/cars' component={GetArgumentsCar} />
 
         <Redirect to='/' />
       </Switch>

@@ -1,5 +1,9 @@
 import { Schema, model } from 'mongoose';
 
+const {
+  Types: { ObjectId },
+} = Schema;
+
 const CarSchema = new Schema(
   {
     objectId: {

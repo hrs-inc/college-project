@@ -19,6 +19,16 @@ export default gql`
 
   extend type Mutation {
     addCar(carInput: CarInput!): Car!
+    addCategory(name: String): Category
+  }
+
+  input CategoryInput {
+    name: String
+  }
+
+  type Category {
+    id: ID!
+    name: String!
   }
 
   input CarInput {
