@@ -5,16 +5,21 @@ export default gql`
     getAllCars: [Car]!
     getSingleCar(objectId: String!): Car!
     getArgumentCars(category: String!): [Car]!
+    getAllCategory: [Category]!
   }
 
   type Car {
     id: ID!
-    objectId: String
     brand: String
+    price: Int
+    description: String
     category: String
     model: String
-    isRent: Boolean
+    isAvailable: Boolean
     seat: Int
+    age: Int
+    photo: String
+    ac: Boolean
   }
 
   extend type Mutation {
@@ -32,11 +37,15 @@ export default gql`
   }
 
   input CarInput {
-    objectId: String!
+    photo: String
     brand: String!
+    price: Int!
     category: String!
     model: String!
-    isRent: Boolean!
+    isAvailable: Boolean!
     seat: Int!
+    ac: Boolean!
+    description: String!
+    age: Int!
   }
 `;

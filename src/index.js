@@ -51,6 +51,7 @@ const startApp = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
+      useCreateIndex: true,
     });
     success({
       message: 'Successfully connected with database',

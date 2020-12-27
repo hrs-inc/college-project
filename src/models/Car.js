@@ -6,23 +6,44 @@ const {
 
 const CarSchema = new Schema(
   {
-    objectId: {
-      type: String,
-    },
     brand: {
       type: String,
+      required: true,
+      trim: true,
+      maxlength: 32,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      maxlength: 2000,
     },
     category: {
-      type: String,
+      type: ObjectId,
+      ref: 'Category',
+      maxlength: true,
     },
     model: {
       type: String,
     },
-    isRent: {
+    isAvailable: {
       type: Boolean,
     },
     seat: {
       type: Number,
+    },
+    age: {
+      type: Number,
+    },
+    photo: {
+      data: Buffer,
+      contentType: String,
+    },
+    ac: {
+      type: Boolean,
     },
   },
   { timestamps: true },

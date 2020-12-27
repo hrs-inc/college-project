@@ -30,7 +30,6 @@ const UserSchema = new Schema(
       type: Number,
       default: 0,
     },
-
     avatarImage: {
       type: String,
       default:

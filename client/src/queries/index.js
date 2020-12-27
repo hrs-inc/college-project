@@ -65,3 +65,53 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
+
+export const ADD_CATEGORY = gql`
+  mutation($name: String!) {
+    addCategory(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_ALL_CATEGORY = gql`
+  query {
+    getAllCategory {
+      id
+      name
+    }
+  }
+`;
+
+export const ADD_CAR = gql`
+  mutation(
+    $photo: String
+    $brand: String!
+    $price: Int!
+    $category: String!
+    $model: String!
+    $isAvailable: Boolean!
+    $seat: Int!
+    $ac: Boolean!
+    $description: String!
+    $age: Int!
+  ) {
+    addCar(
+      carInput: {
+        photo: $photo
+        brand: $brand
+        price: $price
+        category: $category
+        model: $model
+        isAvailable: $isAvailable
+        seat: $seat
+        ac: $ac
+        description: $description
+        age: $age
+      }
+    ) {
+      brand
+    }
+  }
+`;

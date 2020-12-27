@@ -12,6 +12,10 @@ export default {
       let cars = await Car.find();
       return cars.filter((car) => car.category === category);
     },
+    getAllCategory: async (parent, args, { Category }, info) => {
+      let categories = await Category.find();
+      return categories;
+    },
   },
   Mutation: {
     addCar: async (parent, { carInput }, { Car }, info) => {
