@@ -2,17 +2,16 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import React, { useState } from 'react';
 import Layout from '../core/Layout';
-import { Link } from 'react-router-dom';
-import { ADD_CATEGORY, GET_CURRENT_USER } from '../queries';
+import { Link, withRouter } from 'react-router-dom';
+import { ADD_CATEGORY } from '../queries';
+import withAuth from '../components/withAuth';
 
-const AddCategory = () => {
+const AddCategory = ({ session }) => {
   const [name, setName] = useState('');
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const { data, error, loading } = useQuery(GET_CURRENT_USER);
-
-  const [addCategory] = useMutation(ADD_CATEGORY, {
+  const [addCategory, { loading }] = useMutation(ADD_CATEGORY, {
     variables: { name },
   });
 
@@ -68,13 +67,13 @@ const AddCategory = () => {
     <div>
       <Layout
         title='Add a  category'
-        description={`G'day ${user.name}, ready to add a new category?`}
+        description={`G'day ${session.authUserProfile.username}, ready to add a new category?`}
       />
 
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
           {showSuccess()}
-          {showError()}
+
           {newCategoryForm()}
           {goBack()}
         </div>
@@ -83,4 +82,6 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default withAuth(
+  (session) => session && session.authUserProfile.role === 1,
+)(withRouter(AddCategory));

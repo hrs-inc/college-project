@@ -26,6 +26,8 @@ import Products from './components/Products';
 import GetArgumentsCar from './components/GetArgumentsCar';
 // import AdminDashboard from './user/AdminDashboard';
 import { ADD_CAR } from './queries';
+import Profile from './components/Profile/Profile';
+import AddCategory from './admin/AddCategory';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
 
@@ -60,6 +62,17 @@ const Root = ({ refetch, session }) => (
           path='/signup'
           render={() => <Signup refetch={refetch} />}
         />
+        <Route
+          path='/profile'
+          exact
+          render={() => <Profile session={session} />}
+        />
+
+        <Route
+          path='/add/category'
+          exact
+          render={() => <AddCategory session={session} />}
+        />
         <Route path='/service' component={Service} />
         <Route path='/products' component={Products} />
         {/* <Route
@@ -68,10 +81,10 @@ const Root = ({ refetch, session }) => (
           session={session}
         /> */}
 
-        <Route
+        {/* <Route
           path='/car/add'
           render={() => <ADD_CAR session={session} refetch={refetch} />}
-        />
+        /> */}
 
         <Route path='/:category/cars' component={GetArgumentsCar} />
 

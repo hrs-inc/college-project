@@ -10,7 +10,7 @@ import './Navbar.css';
 
 const Navbar = ({ session }) => (
   <nav>
-    {session && session.authUserProfile ? (
+    {session && session.authUserProfile.role ? (
       <NavbarAuth session={session} />
     ) : (
       <NavbarUnAuth />
@@ -33,7 +33,9 @@ const NavbarAuth = ({ session }) => (
         <NavLink to='/recipe/add'>Add Recipe</NavLink>
       </li>
       <li>
-        <NavLink to='/profile'>Profile</NavLink>
+        <NavLink exact to='/profile'>
+          Profile
+        </NavLink>
       </li>
       <li>
         <Signout />

@@ -7,7 +7,7 @@ import { GET_CURRENT_USER } from '../queries';
 const withAuth = (conditionFunc) => (Component) => (props) => {
   const { data, loading } = useQuery(GET_CURRENT_USER);
   if (loading) return null;
-  return conditionFunc(data) ? <Component {...prop} /> : <Redirect to='/' />;
+  return conditionFunc(data) ? <Component {...props} /> : <Redirect to='/' />;
 };
 
 export default withAuth;

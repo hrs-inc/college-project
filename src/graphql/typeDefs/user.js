@@ -12,6 +12,7 @@ export default gql`
   input UserInput {
     avatarImage: String
     email: String!
+    role: Int!
     firstName: String!
     lastName: String!
     username: String!
@@ -21,6 +22,7 @@ export default gql`
 
   type User {
     id: ID!
+    role: Int
     phone: String
     email: String!
     username: String!

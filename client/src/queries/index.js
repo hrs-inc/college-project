@@ -62,6 +62,7 @@ export const GET_CURRENT_USER = gql`
     authUserProfile {
       username
       email
+      role
     }
   }
 `;
