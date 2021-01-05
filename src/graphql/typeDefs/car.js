@@ -11,15 +11,19 @@ export default gql`
     id: ID!
     objectId: String
     brand: String
+    imageUrl: String
     category: String
     model: String
-    isRent: Boolean
+    isAvailable: Boolean
     seat: Int
+    age: Int
+    ac: Boolean
+    description: String
+    price: Int
   }
 
   extend type Mutation {
     addCar(carInput: CarInput!): Car!
-    addCategory(name: String): Category
   }
 
   input CategoryInput {
@@ -36,7 +40,11 @@ export default gql`
     brand: String!
     category: String!
     model: String!
-    isRent: Boolean!
+    isAvailable: Boolean!
     seat: Int!
+    description: String!
+    age: Int
+    ac: Boolean
+    price: Int
   }
 `;

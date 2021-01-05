@@ -27,8 +27,9 @@ const UserSchema = new Schema(
       required: false,
     },
     role: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: 'user',
+      enum: ['user', 'admin'],
     },
 
     avatarImage: {

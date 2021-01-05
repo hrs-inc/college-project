@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-const {
-  Types: { ObjectId },
-} = Schema;
+// const {
+//   Types: { ObjectId },
+// } = Schema;
 
 const CarSchema = new Schema(
   {
@@ -12,17 +12,36 @@ const CarSchema = new Schema(
     brand: {
       type: String,
     },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
     category: {
       type: String,
     },
     model: {
       type: String,
     },
-    isRent: {
+    isAvailable: {
       type: Boolean,
     },
     seat: {
       type: Number,
+    },
+    age: {
+      type: Number,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      maxlength: 2000,
+    },
+    ac: {
+      type: Boolean,
     },
   },
   { timestamps: true },

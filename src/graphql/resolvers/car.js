@@ -20,9 +20,5 @@ export default {
       });
       return newCar;
     },
-    addCategory: async (parent, { name }, { Category }, info) => {
-      let categories = await Category.create({ name });
-      return categories;
-    },
   },
 };

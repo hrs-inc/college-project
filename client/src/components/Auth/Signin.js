@@ -3,17 +3,32 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { AUTHENTICATE_USER } from '../../queries';
-import img from '../../assets/l2.png';
 import useForm from '../lib/useForm';
 import Error from '../lib/Error';
+import Copyright from './Copyright';
+import { useStyles } from './styles';
 
-import './Signup.css';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@material-ui/core';
 
 const Signin = (props) => {
   const { inputs, handleChange, clearForm } = useForm({
     username: '',
     password: '',
   });
+
+  const classes = useStyles();
 
   const { username, password } = inputs;
 
@@ -42,41 +57,71 @@ const Signin = (props) => {
   };
 
   return (
-    <div>
-      <form
-        className='loginbox'
-        onSubmit={(e) => handleSubmit(e, authenticateUser)}
-      >
-        <img src={img} className='avatar' alt='' />
-        <h1 className='animate__animated animate__heartBeat'>Signin</h1>
-        <div>
-          <label>Username</label>
-          <input
-            className='username'
-            type='text'
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}></Avatar>
+        <Typography component='h1' variant='h5'>
+          Sign in
+        </Typography>
+        <form
+          className={classes.form}
+          onSubmit={(e) => handleSubmit(e, authenticateUser)}
+        >
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            id='username'
+            label='Username'
             name='username'
-            placeholder='Enter Username'
+            autoComplete='username'
+            autoFocus
             value={username}
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label>Passsword</label>
-          <input
-            className='password'
-            type='password'
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
             name='password'
-            placeholder='Enter password'
+            label='Password'
+            type='password'
+            id='password'
+            autoComplete='current-password'
             value={password}
             onChange={handleChange}
           />
-        </div>
-        <button type='submit' disabled={loading || validateForm()}>
-          Signup
-        </button>
-        {error && <Error message={error.message} />}
-      </form>
-    </div>
+          <FormControlLabel
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+            disabled={loading || validateForm()}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item>
+              <Link href='#' variant='body2'>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+          {error && <Error message={error.message} />}
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
   );
 };
 

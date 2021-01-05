@@ -17,6 +17,65 @@ export const GET_CAR = gql`
   }
 `;
 
+export const GET_ALL_CAR = gql`
+  query {
+    getAllCars {
+      id
+      brand
+      price
+      description
+      category
+      model
+      isAvailable
+      seat
+      age
+      ac
+    }
+  }
+`;
+
+export const ADD_CAR = gql`
+  mutation(
+    $objectId: String!
+    $brand: String!
+    $category: String!
+    $model: String!
+    $isAvailable: Boolean!
+    $seat: Int!
+    $description: String!
+    $age: Int
+    $ac: Boolean
+    $price: Int
+  ) {
+    addCar(
+      carInput: {
+        objectId: $objectId
+        brand: $brand
+        category: $category
+        model: $model
+        isAvailable: $isAvailable
+        seat: $seat
+        description: $description
+        age: $age
+        ac: $ac
+        price: $price
+      }
+    ) {
+      id
+      objectId
+      brand
+      category
+      model
+      isAvailable
+      seat
+      age
+      ac
+      description
+      price
+    }
+  }
+`;
+
 /**
  * users
  */
@@ -62,6 +121,7 @@ export const GET_CURRENT_USER = gql`
     authUserProfile {
       username
       email
+      role
     }
   }
 `;

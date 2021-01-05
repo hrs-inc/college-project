@@ -23,6 +23,7 @@ export default gql`
     id: ID!
     phone: String
     email: String!
+    role: String!
     username: String!
     firstName: String!
     lastName: String!

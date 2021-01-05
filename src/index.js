@@ -47,11 +47,14 @@ const startApp = async () => {
   // inject apollo server middleware on express application
 
   try {
-    await mongoose.connect(DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    });
+    await mongoose.connect(
+      'mongodb+srv://sandy:sandy@cluster0.omigq.mongodb.net/college-project?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      },
+    );
     success({
       message: 'Successfully connected with database',
       badge: true,
