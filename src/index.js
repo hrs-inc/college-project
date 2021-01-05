@@ -14,8 +14,6 @@ import * as AppModels from './models';
 
 // initialize express
 const app = express();
-app.use(AuthMiddleware);
-app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
@@ -25,6 +23,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(AuthMiddleware);
+app.use(express.json());
 app.use(express.static(join(__dirname, './uploads')));
 
 const server = new ApolloServer({
@@ -48,7 +48,8 @@ const startApp = async () => {
 
   try {
     await mongoose.connect(
-      'mongodb+srv://sandy:sandy@cluster0.omigq.mongodb.net/college-project?retryWrites=true&w=majority',
+      // 'mongodb+srv://sandy:sandy@cluster0.omigq.mongodb.net/college-project?retryWrites=true&w=majority',
+      DB_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

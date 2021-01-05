@@ -1,5 +1,5 @@
+import { join, parse } from 'path';
 import { createWriteStream } from 'fs';
-import { parse, join } from 'path';
 
 import { URL } from '../../config';
 
@@ -8,17 +8,16 @@ export default {
     info: (parent, args, context, info) => 'Hello i am image resolver methods',
   },
   Mutation: {
-    imageUploader: async (parent, { file }, context, info) => {
+    singleUpload: async (_, { file }) => {
       let { filename, createReadStream } = await file;
+
       let stream = createReadStream();
 
-      let { name, ext } = parse(filename);
-      name = name.replace(/([^a-z0-9A-Z ]+)/gi, '-').replace(' ', '_');
+      let { ext, name } = parse(filename);
 
-      let serverFile = join(
-        __dirname,
-        `../../uploads/${name}-${Date.now()}${ext}`,
-      );
+      name = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '_');
+
+      let serverFile = join(__dirname, `../../uploads/${name}${ext}`);
 
       let writeStream = await createWriteStream(serverFile);
       await stream.pipe(writeStream);

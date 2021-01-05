@@ -7,6 +7,8 @@ import Error from '../components/lib/Error';
 import { GET_ALL_CAR, ADD_CAR } from '../queries';
 import { useMutation } from '@apollo/client';
 
+import './AddCarStyle.css';
+
 const AddCar = ({ history }) => {
   const { inputs, handleChange, clearForm } = useForm({
     brand: '',
@@ -14,8 +16,8 @@ const AddCar = ({ history }) => {
     category: 'sedan',
     model: '',
     isAvailable: 'yes',
-    seat: '',
-    age: '',
+    seat: '2',
+    age: '20',
     price: '',
     ac: 'no',
   });
@@ -69,86 +71,164 @@ const AddCar = ({ history }) => {
     });
   };
 
-  return (
-    <div>
-      <h2>Add Car</h2>
-      <form onSubmit={(e) => handleSubmit(e, addCar)}>
-        <input
-          type='text'
-          name='brand'
-          value={inputs.brand}
-          onChange={handleChange}
-          placeholder='Brand Name'
-        />
-        <input
-          type='text'
-          name='brand'
-          value={inputs.model}
-          onChange={handleChange}
-          placeholder='Model Name'
-        />
-        <input
-          type='text'
-          name='price'
-          value={inputs.price}
-          onChange={handleChange}
-          placeholder='Price'
-        />
-
-        <input
-          type='text'
-          name='seat'
-          value={inputs.seat}
-          onChange={handleChange}
-          placeholder='No of seats'
-        />
-
-        <select name='category' onChange={handleChange} value={inputs.category}>
-          <option value='sedan'>sedan</option>
-          <option value='suv'>suv</option>
-          <option value='hatchbag'>hatchbag</option>
-          <option value='coupe'>coupe</option>
-          <option value='convertible'>convertible</option>
-          <option value='convertible'>pickup</option>
-        </select>
-        <select name='age' onChange={handleChange} value={inputs.age}>
-          <option value='20'>20</option>
-          <option value='21'>21</option>
-          <option value='22'>22</option>
-          <option value='23'>23</option>
-          <option value='24'>24</option>
-          <option value='25'>25</option>
-        </select>
-        <select
-          name='isAvailable'
-          onChange={handleChange}
-          value={inputs.isAvailable}
-        >
-          <option value='yes'>yes</option>
-          <option value='no'>no</option>
-        </select>
-        <select name='ac' onChange={handleChange} value={inputs.ac}>
-          <option value='yes'>yes</option>
-          <option value='no'>no</option>
-        </select>
-        <textarea
-          type='text'
-          name='description'
-          value={inputs.description}
-          onChange={handleChange}
-          placeholder='Description'
-        />
-        <button
-          type='submit'
-          className='button-primary'
-          disabled={loading || validateForm()}
-        >
-          Add Car
-        </button>
+  const Form = () => (
+    <div className='formbox'>
+      <form onSubmit={(e) => handleSubmit(e, addCar)} className='Form'>
+        <table>
+          <thead>
+            <tr>
+              <th>Car Adding Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className='front'>
+                <label htmlFor='brand'>Brand Name</label>
+              </td>
+              <td>
+                <input
+                  type='text'
+                  className='back'
+                  name='brand'
+                  value={inputs.brand}
+                  onChange={handleChange}
+                  placeholder='Brand Name'
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className='front'>
+                <label>Model Name</label>
+              </td>
+              <td>
+                <input
+                  type='text'
+                  name='model'
+                  className='back'
+                  value={inputs.model}
+                  onChange={handleChange}
+                  placeholder='Model Name'
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className='front'>
+                <label>Price</label>
+              </td>
+              <td>
+                <input
+                  type='text'
+                  name='price'
+                  className='back'
+                  value={inputs.price}
+                  onChange={handleChange}
+                  placeholder='Price'
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>NO of sests</label>
+              </td>
+              <td>
+                <select>
+                  <option value='2'>2</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                  <option value='6'>6</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>Category</label>
+              </td>
+              <td>
+                <select
+                  name='category'
+                  onChange={handleChange}
+                  value={inputs.category}
+                >
+                  <option value='sedan'>sedan</option>
+                  <option value='suv'>suv</option>
+                  <option value='hatchbag'>hatchbag</option>
+                  <option value='coupe'>coupe</option>
+                  <option value='convertible'>convertible</option>
+                  <option value='convertible'>pickup</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>Age</label>
+              </td>
+              <td>
+                <select name='age' onChange={handleChange} value={inputs.age}>
+                  <option value='20'>20</option>
+                  <option value='21'>21</option>
+                  <option value='22'>22</option>
+                  <option value='23'>23</option>
+                  <option value='24'>24</option>
+                  <option value='25'>25+</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>Availability</label>
+              </td>
+              <td>
+                <select>
+                  <option value='yes'>yes</option>
+                  <option value='no'>no</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>AC</label>
+              </td>
+              <td>
+                <select>
+                  <option value='yes'>yes</option>
+                  <option value='no'>no</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className='front'>Discriptions</label>
+              </td>
+              <td>
+                <textarea
+                  type='text'
+                  name='description'
+                  value={inputs.description}
+                  onChange={handleChange}
+                  placeholder='Description'
+                />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button
+                  type='submit'
+                  className='button-primary'
+                  disabled={loading || validateForm()}
+                >
+                  Add Car
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
       {error && <Error error={error} />}
     </div>
   );
+
+  return <Form />;
 };
 
 export default withAuth((session) => session)(withRouter(AddCar));
