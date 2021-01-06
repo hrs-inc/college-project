@@ -12,8 +12,11 @@ import AuthMiddleware from './middlewares/auth';
 import mongoose from 'mongoose';
 import * as AppModels from './models';
 
+import cors from 'cors';
+
 // initialize express
 const app = express();
+/*
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
@@ -23,6 +26,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+*/
+app.use(cors());
 app.use(AuthMiddleware);
 app.use(express.json());
 app.use(express.static(join(__dirname, './uploads')));

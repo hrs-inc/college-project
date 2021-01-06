@@ -24,8 +24,7 @@ import Home from './components/pages/Home';
 import Service from './components/Service';
 import Products from './components/Products';
 import GetArgumentsCar from './components/GetArgumentsCar';
-import AddCar from './admin/AddCar';
-import SimpleForm from './admin/SimpleForm';
+import AddCar from './components/admin/AddCar';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
 
@@ -64,7 +63,6 @@ const Root = ({ refetch, session }) => (
           path='/create'
           render={() => <AddCar session={session} refetch={refetch} />}
         />
-        <Route path='/fileupload' component={SimpleForm} />
 
         <Route path='/service' component={Service} />
         <Route path='/products' component={Products} />
